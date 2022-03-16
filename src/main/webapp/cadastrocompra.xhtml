@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Gestor de Finanças</title>
+	<h:outputStylesheet library="css" name="style.css" />
+
+</h:head>
+
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Credor:" />
+			<h:selectOneMenu styleClass="selectOneMenu"
+				value="#{compraBean.credorId}">
+				<f:selectItems value="#{credorBean.listarCredores}" var="credor"
+					itemValue="#{credor.id}" itemLabel="#{credor.nome}"
+					styleClass="selectOneMenu"></f:selectItems>
+			</h:selectOneMenu>
+			<h:commandLink action="#{compraBean.cadastrarCredor()}"
+				value="Novo credor" immediate="true" />
+
+
+			<h:outputLabel value="Descrição: " />
+			<h:inputText value="#{compraBean.compra.descricao}" />
+			<h:outputLabel value="" />
+
+			<h:outputLabel value="Data:" />
+			<h:inputText value="#{compraBean.compra.data}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+			<h:outputLabel value="" />
+
+			<h:outputLabel value="Valor:" />
+			<h:inputText value="#{compraBean.compra.valor}" />
+			<h:outputLabel value="" />
+
+			<h:outputLabel value="Parcelas:" />
+			<h:inputText value="#{compraBean.compra.parcelas}" />
+			<h:outputLabel value="" />
+
+
+			<h:outputLabel value="Situação:" />
+			<h:inputText value="#{compraBean.compra.situacao}" />
+			<h:outputLabel value="" />
+
+			<h:outputLabel value="Responsável:" />
+
+			<h:selectOneMenu value="#{compraBean.responsavelId}"
+				styleClass="selectOneMenu">
+				<f:selectItems value="#{responsavelBean.listaResponsavel}"
+					var="responsavel" itemValue="#{responsavel.id}"
+					itemLabel="#{responsavel.nome}" styleClass="selectOneMenu" />
+			</h:selectOneMenu>
+			<h:commandLink action="cadastroresponsavel" value="Novo responsável"
+				immediate="true" />
+
+		</h:panelGrid>
+		<h:commandButton action="#{compraBean.salvar()}" value="Salvar" />
+	</h:form>
+
+	<hr />
+
+	<h:dataTable value="#{compraBean.listarCompras}" var="compra"
+		border="1">
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="ID" />
+			</f:facet>
+			<h:outputLabel value="#{compra.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Credor" />
+			</f:facet>
+			<a href="compraspocredor.xhtml"><h:outputLabel
+					value="#{compra.credor.nome}" /></a>
+
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Descrição" />
+			</f:facet>
+			<h:outputLabel value="#{compra.descricao}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Data" />
+			</f:facet>
+			<h:outputLabel value="#{compra.data}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputLabel>
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Valor" />
+			</f:facet>
+			<h:outputLabel value="#{compra.valor}">
+				<f:convertNumber currencyCode="R$" locale="pt_BR" />
+			</h:outputLabel>
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Parcelas" />
+			</f:facet>
+			<h:outputLabel value="#{compra.parcelas}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Responsavel" />
+			</f:facet>
+			<a href="comprasporesponsavel.xhtml"><h:outputLabel
+					value="#{compra.responsavel.nome}" /></a>
+
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Situação" />
+			</f:facet>
+			<h:outputLabel value="#{compra.situacao}" />
+		</h:column>
+
+	</h:dataTable>
+
+
+
+</h:body>
+
+</html>

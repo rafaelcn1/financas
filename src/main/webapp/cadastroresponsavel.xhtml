@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Resposável:" />
+			<h:inputText value="#{responsavelBean.responsavel.nome}" />
+
+			<h:outputLabel value="Renda: " />
+			<h:inputText value="#{responsavelBean.responsavel.renda}">
+				<f:convertNumber currencySymbol="R$" type="currency" locale="pt_BR"
+					pattern="#0000.00" />
+			</h:inputText>
+
+		</h:panelGrid>
+		<h:commandButton action="#{responsavelBean.cadastrarResponsavel()}"
+			value="Cadastrar" />
+
+		<hr />
+
+		<h:dataTable value="#{responsavelBean.listaResponsavel}"
+			var="responsavel" border="2">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="ID" />
+				</f:facet>
+				<h:outputLabel value="#{responsavel.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Nome" />
+				</f:facet>
+				<h:outputLabel value="#{responsavel.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Renda" />
+				</f:facet>
+				<h:outputLabel value="#{responsavel.renda}" />
+			</h:column>
+
+			<h:column>
+				<h:commandLink action="#{responsavelBean.editarResponsavel(responsavel.id)}" value="Editar" />
+			</h:column>
+
+			<h:column>
+				<h:commandLink action="#{responsavelBean.excluirResponsavel(responsavel.id)}" value="Excluir" />
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+
+
+</h:body>
+
+</html>

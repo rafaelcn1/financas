@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Responsavel: " />
+			<h:selectOneMenu styleClass="selectOneMenu"
+				value="#{responsavelBean.responsavelId}">
+				<f:selectItems value="#{responsavelBean.listaResponsavel}"
+					var="responsavel" itemValue="#{responsavel.id}"
+					itemLabel="#{responsavel.nome}" styleClass="selectOneMenu"></f:selectItems>
+			</h:selectOneMenu>
+
+			<h:commandButton
+				action="#{responsavelBean.buscarCompraPorResponsavel()}"
+				value="Buscar" />
+		</h:panelGrid>
+
+		<hr />
+		<h:outputLabel value="Valor total em compras: " />
+		<h:outputLabel
+			value="#{responsavelBean.valorTotalEmComprasPeloResponsavel}" />
+		<h:dataTable value="#{responsavelBean.comprasPorResponsavel}"
+			var="compra" border="1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="ID" />
+				</f:facet>
+				<h:outputLabel value="#{compra.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Credor" />
+				</f:facet>
+				<h:outputLabel value="#{compra.credor.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Descrição" />
+				</f:facet>
+				<h:outputLabel value="#{compra.descricao}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Data" />
+				</f:facet>
+				<h:outputLabel value="#{compra.data}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputLabel>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Valor" />
+				</f:facet>
+				<h:outputLabel value="#{compra.valor}">
+					<f:convertNumber locale="pt_BR" currencySymbol="R$" type="currency" />
+				</h:outputLabel>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Parcelas" />
+				</f:facet>
+				<h:outputLabel value="#{compra.parcelas}">
+				</h:outputLabel>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Responsavel" />
+				</f:facet>
+				<h:outputLabel value="#{compra.responsavel.nome}" />
+			</h:column>
+
+		</h:dataTable>
+		
+		<hr/>
+		
+		<h:commandButton
+				action="cadastrocompra"
+				value="Voltar" />
+
+
+
+	</h:form>
+
+
+
+</h:body>
+
+</html>
