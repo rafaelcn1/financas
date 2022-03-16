@@ -13,7 +13,6 @@ public class ComprasMain {
 
 		Compra compra1 = new Compra();
 
-		compra1.setCredor("C6");
 		compra1.setDescricao("Celpe");
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
