@@ -2,6 +2,7 @@ package br.com.financas.main;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import br.com.financas.model.Compra;
@@ -18,11 +19,15 @@ public class ComprasMain {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date diaDaCompra = sdf.parse("06/03/2022");
 		compra1.setData(diaDaCompra);
-		
+
 		compra1.setValor(208.50);
-		
-		compra1.setParcelas(1);
-		System.out.println(compra1.toString());
+
+		compra1.setParcelas(2);
+
+		Calendar calendar = Calendar.getInstance();
+		@SuppressWarnings("deprecation")
+		int mes = calendar.getTime().getMonth();
+		calendar.set(Calendar.MONTH, mes + 1);
 
 	}
 

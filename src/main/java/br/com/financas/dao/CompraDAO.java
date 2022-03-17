@@ -9,15 +9,19 @@ import br.com.financas.model.Compra;
 import br.com.financas.remote.CompraRemote;
 
 public class CompraDAO implements CompraRemote {
-	
+
 	@PersistenceContext
 	private EntityManager manager;
 
 	@Override
 	public void salvar(Compra compra) {
 		// TODO Auto-generated method stub
-		manager.persist(compra);
-		
+		if (compra.getId() != null) {
+			manager.merge(compra);
+		} else {
+			manager.persist(compra);
+		}
+
 	}
 
 	@Override
@@ -31,7 +35,5 @@ public class CompraDAO implements CompraRemote {
 		// TODO Auto-generated method stub
 		return manager.createQuery("select c from Compra c ORDER BY c.data", Compra.class).getResultList();
 	}
-	
-	
 
 }

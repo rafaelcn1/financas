@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Credor: " />
+			<h:selectOneMenu value="#{cobrancaBean.credorId}">
+				<f:selectItems value="#{cobrancaBean.todosOsCredores}" var="credor"
+					itemLabel="#{credor.nome}" itemValue="#{credor.id}" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Mês: " />
+			<h:selectOneMenu value="#{cobrancaBean.mes}">
+				<f:selectItem itemLabel="Janeiro" itemValue="0" />
+				<f:selectItem itemLabel="Fevereiro" itemValue="1" />
+				<f:selectItem itemLabel="Março" itemValue="2" />
+				<f:selectItem itemLabel="Abril" itemValue="3" />
+				<f:selectItem itemLabel="Maio" itemValue="4" />
+				<f:selectItem itemLabel="Junho" itemValue="5" />
+				<f:selectItem itemLabel="Julho" itemValue="6" />
+				<f:selectItem itemLabel="Agosto" itemValue="7" />
+				<f:selectItem itemLabel="Setembro" itemValue="8" />
+				<f:selectItem itemLabel="Outubro" itemValue="9" />
+				<f:selectItem itemLabel="Novembro" itemValue="10" />
+				<f:selectItem itemLabel="Dezembro" itemValue="11" />
+			</h:selectOneMenu>
+
+			<h:commandButton action="#{cobrancaBean.mes()}" value="Pesquisar" />
+		</h:panelGrid>
+
+		<hr />
+
+		<h:dataTable value="#{cobrancaBean.listaDeComprasPorCredorNoMes}"
+			var="compra">
+			<h:column>
+				<h:outputLabel value="#{compra.valor}">
+					<f:convertNumber locale="pt_BR" currencySymbol="R$" type="currency" />
+				</h:outputLabel>
+			</h:column>
+			<h:column>
+				<h:outputLabel value="#{compra.descricao}">
+				</h:outputLabel>
+			</h:column>
+
+			<h:column>
+				<h:outputLabel value="#{compra.data}">
+				</h:outputLabel>
+			</h:column>
+
+			<h:column>
+				<h:outputLabel value="#{compra.parcelas}">
+				</h:outputLabel>
+			</h:column>
+
+			<h:column>
+				<h:outputLabel value="#{compra.responsavel.nome}">
+				</h:outputLabel>
+			</h:column>
+
+		</h:dataTable>
+
+		<br />
+
+		<h:outputLabel value="Valor total: #{cobrancaBean.valorDaCobrancaMes}" />
+
+		<hr />
+
+		<h:commandButton action="cadastrocompra" value="Voltar"
+			immediate="true" />
+
+	</h:form>
+
+
+
+</h:body>
+
+</html>

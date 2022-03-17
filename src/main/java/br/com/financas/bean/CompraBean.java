@@ -1,5 +1,8 @@
 package br.com.financas.bean;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -91,11 +94,27 @@ public class CompraBean {
 		setResponsavel(buscarResponsavelPorId);
 		getCompra().setResponsavel(getResponsavel());
 
-		compraDAO.salvar(getCompra());
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(getCompra().getData());
+
+		int mesDaCompra = getCompra().getData().getMonth();
+
+		double valor = getCompra().getValor() / getCompra().getParcelas();
+		for (int i = 1; i <= getCompra().getParcelas(); i++) {
+
+			Compra compraTemp = new Compra(getCompra().getDescricao(), getCompra().getSituacao(), valor,
+					calendar.getTime(), i, buscarCredorPorId, buscarResponsavelPorId);
+
+			compraDAO.salvar(compraTemp);
+
+			calendar.set(Calendar.MONTH, mesDaCompra + i);
+			calendar.setTime(calendar.getTime());
+
+		}
 
 		setCredor(new Credor());
-		setCompra(new Compra());
 		setResponsavel(new Responsavel());
+		setCompra(new Compra());
 	}
 
 	public String cadastrarCredor() {

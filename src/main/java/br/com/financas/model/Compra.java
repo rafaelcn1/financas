@@ -26,7 +26,7 @@ public class Compra implements Serializable {
 	private String descricao, situacao;
 	private double valor;
 	private Date data;
-	private int vencimento, parcelas;
+	private int parcelas;
 
 	@ManyToOne
 	@JoinColumn(name = "credor_id", foreignKey = @ForeignKey(name = "credor_id"), nullable = false)
@@ -39,6 +39,18 @@ public class Compra implements Serializable {
 	public Compra() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Compra(String descricao, String situacao, double valor, Date data, int parcelas, Credor credor,
+			Responsavel responsavel) {
+		super();
+		this.descricao = descricao;
+		this.situacao = situacao;
+		this.valor = valor;
+		this.data = data;
+		this.parcelas = parcelas;
+		this.credor = credor;
+		this.responsavel = responsavel;
 	}
 
 	public Integer getId() {
@@ -89,14 +101,6 @@ public class Compra implements Serializable {
 		this.data = data;
 	}
 
-	public int getVencimento() {
-		return vencimento;
-	}
-
-	public void setVencimento(int vencimento) {
-		this.vencimento = vencimento;
-	}
-
 	public int getParcelas() {
 		return parcelas;
 	}
@@ -114,12 +118,6 @@ public class Compra implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "Compra [id=" + id + ", credor=" + credor + ", descricao=" + descricao + ", situacao=" + situacao
-				+ ", valor=" + valor + ", data=" + data + ", vencimento=" + vencimento + ", parcelas=" + parcelas + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
@@ -134,6 +132,13 @@ public class Compra implements Serializable {
 			return false;
 		Compra other = (Compra) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Compra [id=" + id + ", descricao=" + descricao + ", situacao=" + situacao + ", valor=" + valor
+				+ ", data=" + data + ", parcelas=" + parcelas + ", credor=" + credor + ", responsavel=" + responsavel
+				+ "]";
 	}
 
 }

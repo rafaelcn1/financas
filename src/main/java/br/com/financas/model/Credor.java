@@ -74,11 +74,6 @@ public class Credor implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "Credor [id=" + id + ", nome=" + nome + ", vencimento=" + vencimento + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
@@ -93,6 +88,11 @@ public class Credor implements Serializable {
 			return false;
 		Credor other = (Credor) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Credor [id=" + id + ", nome=" + nome + ", vencimento=" + vencimento + ", compras=" + compras + "]";
 	}
 
 }
