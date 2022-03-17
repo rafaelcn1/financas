@@ -23,6 +23,7 @@ public class ResponsavelBean {
 
 	private Integer responsavelId;
 
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private ResponsavelDAO responsavelDAO;
 

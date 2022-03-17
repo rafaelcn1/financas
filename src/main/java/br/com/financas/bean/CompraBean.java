@@ -1,8 +1,6 @@
 package br.com.financas.bean;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -30,12 +28,15 @@ public class CompraBean {
 
 	private Integer credorId, responsavelId;
 
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private CompraDAO compraDAO;
 
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private CredorDAO credorDAO;
 
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private ResponsavelDAO responsavelDAO;
 
@@ -97,6 +98,7 @@ public class CompraBean {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(getCompra().getData());
 
+		@SuppressWarnings("deprecation")
 		int mesDaCompra = getCompra().getData().getMonth();
 
 		double valor = getCompra().getValor() / getCompra().getParcelas();

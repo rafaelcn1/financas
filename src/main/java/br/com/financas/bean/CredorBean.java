@@ -22,6 +22,7 @@ public class CredorBean {
 
 	private double valorTotalEmCompras;
 
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private CredorDAO credorDAO = new CredorDAO();
 

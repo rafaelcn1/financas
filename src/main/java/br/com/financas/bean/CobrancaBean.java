@@ -25,6 +25,7 @@ public class CobrancaBean {
 
 	private double valorDaCobrancaMes;
 
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private CredorDAO credorDAO;
 
