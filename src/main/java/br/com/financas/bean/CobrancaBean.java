@@ -24,6 +24,9 @@ public class CobrancaBean {
 	private List<Compra> listaDeComprasPorCredorNoMes = new ArrayList<Compra>();
 
 	private double valorDaCobrancaMes;
+	
+	private double valorDaCobrancaEmAbertoNoMes;
+	private double valorDaCobrancaPagoNoMes;
 
 	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
@@ -82,10 +85,29 @@ public class CobrancaBean {
 	public void setValorDaCobrancaMes(double valorDaCobrancaMes) {
 		this.valorDaCobrancaMes = valorDaCobrancaMes;
 	}
+	
+
+	public double getValorDaCobrancaEmAbertoNoMes() {
+		return valorDaCobrancaEmAbertoNoMes;
+	}
+
+	public void setValorDaCobrancaEmAbertoNoMes(double valorDaCobrancaEmAbertoNoMes) {
+		this.valorDaCobrancaEmAbertoNoMes = valorDaCobrancaEmAbertoNoMes;
+	}
+
+	public double getValorDaCobrancaPagoNoMes() {
+		return valorDaCobrancaPagoNoMes;
+	}
+
+	public void setValorDaCobrancaPagoNoMes(double valorDaCobrancaPagoNoMes) {
+		this.valorDaCobrancaPagoNoMes = valorDaCobrancaPagoNoMes;
+	}
 
 	@SuppressWarnings("deprecation")
 	public void mes() {
 		double valor = 0;
+		double valorPago = 0;
+		double valorEmAberto = 0;
 		setCredor(credorDAO.buscarPorId(getCredorId()));
 		List<Compra> comprasDoCredor = getCredor().getCompras();
 
@@ -93,11 +115,18 @@ public class CobrancaBean {
 
 		for (Compra compra : comprasDoCredor) {
 			if (compra.getData().getMonth() == getMes()) {
+				if(compra.getSituacao() != null) {
+					valorPago += compra.getValor();
+				} else {
+					valorEmAberto += compra.getValor();
+				}
 				valor += compra.getValor();
 				listaTemp.add(compra);
 			}
 		}
 		setListaDeComprasPorCredorNoMes(listaTemp);
+		setValorDaCobrancaPagoNoMes(valorPago);
+		setValorDaCobrancaEmAbertoNoMes(valorEmAberto);
 		setValorDaCobrancaMes(valor);
 	}
 

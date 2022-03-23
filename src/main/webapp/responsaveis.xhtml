@@ -9,11 +9,14 @@
 	<ui:define name="menu" />
 
 	<ui:define name="titulo">
-		<p:outputLabel value="Todas as Compras" />
+		<p:outputLabel value="Todos os Responsaveis" />
 	</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
 
 			<div class="card">
 				<h5>
@@ -32,7 +35,8 @@
 
 					<p:column headerText="Renda">
 						<p:outputLabel value="#{responsavel.renda}">
-						<f:convertNumber type="currency" locale="pt_BR" currencySymbol="R$ "/>
+							<f:convertNumber type="currency" locale="pt_BR"
+								currencySymbol="R$ " />
 						</p:outputLabel>
 					</p:column>
 
@@ -44,7 +48,8 @@
 
 					<p:column style="width:6rem">
 						<p:commandLink value="Excluir"
-							action="#{responsavelBean.excluirResponsavel(responsavel.id)}" ajax="false" />
+							action="#{responsavelBean.excluirResponsavel(responsavel.id)}"
+							ajax="false" />
 					</p:column>
 
 				</p:dataTable>

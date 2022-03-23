@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -21,6 +23,10 @@ public class CredorBean {
 	private Integer credorId;
 
 	private double valorTotalEmCompras;
+
+	private double valorTotalEmCompraPorCredorEmAberto;
+	private double valorTotalEmCompraPorCredorPago;
+	private double valorTotalEmCompraPorCredor;
 
 	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
@@ -72,11 +78,51 @@ public class CredorBean {
 		this.valorTotalEmCompras = valorTotalEmCompras;
 	}
 
+	public double getValorTotalEmCompraPorCredorEmAberto() {
+		return valorTotalEmCompraPorCredorEmAberto;
+	}
+
+	public void setValorTotalEmCompraPorCredorEmAberto(double valorTotalEmCompraPorCredorEmAberto) {
+		this.valorTotalEmCompraPorCredorEmAberto = valorTotalEmCompraPorCredorEmAberto;
+	}
+
+	public double getValorTotalEmCompraPorCredorPago() {
+		return valorTotalEmCompraPorCredorPago;
+	}
+
+	public void setValorTotalEmCompraPorCredorPago(double valorTotalEmCompraPorCredorPago) {
+		this.valorTotalEmCompraPorCredorPago = valorTotalEmCompraPorCredorPago;
+	}
+
+	public double getValorTotalEmCompraPorCredor() {
+		return valorTotalEmCompraPorCredor;
+	}
+
+	public void setValorTotalEmCompraPorCredor(double valorTotalEmCompraPorCredor) {
+		this.valorTotalEmCompraPorCredor = valorTotalEmCompraPorCredor;
+	}
+
 	public void buscarCompras() {
+		double total = 0;
+		double pago = 0;
+		double aberto = 0;
 		Credor buscarCredorPorId = credorDAO.buscarPorId(getCredorId());
-		setCredor(buscarCredorPorId);
-		List<Compra> listaDeCompras = getCredor().getCompras();
+		List<Compra> listaDeCompras = buscarCredorPorId.getCompras();
+
+		for (Compra compra : listaDeCompras) {
+			if (compra.getSituacao() == null) {
+				aberto += compra.getValor();
+			} else {
+				pago += compra.getValor();
+			}
+			total += compra.getValor();
+
+		}
 		setCompras(listaDeCompras);
+		
+		setValorTotalEmCompraPorCredor(total);
+		setValorTotalEmCompraPorCredorEmAberto(aberto);
+		setValorTotalEmCompraPorCredorPago(pago);
 
 	}
 
@@ -94,17 +140,23 @@ public class CredorBean {
 	}
 
 	@Transactional
-	public void editarCredor(Integer id) {
+	public String editarCredor(Integer id) {
 		Credor buscarPorId = credorDAO.buscarPorId(id);
 		setCredor(buscarPorId);
-		System.out.println(getCredor().toString());
+		return "cadastrocredor?faces-redirect=true";
 	}
 
 	@Transactional
 	public void excluirCredor(Integer id) {
 		Credor buscarPorId = credorDAO.buscarPorId(id);
-		setCredor(buscarPorId);
-		credorDAO.excluir(getCredor());
+
+		if (buscarPorId.getCompras().isEmpty()) {
+			credorDAO.excluir(buscarPorId);
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					buscarPorId.getNome() + " NÃO PODE SER EXCLUIDO(A)!", "POSSUI COMPRA EM SEU NOME!"));
+		}
+
 	}
 
 }

@@ -14,9 +14,9 @@
 	</ui:define>
 	<ui:define name="conteudo">
 		<h:form id="form">
-
-			<p:growl id="msgs" showDetail="true" />
-
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
 			<h:panelGrid columns="2">
 				<p:outputLabel value="Credor: " />
 				<p:selectOneMenu value="#{cobrancaBean.credorId}">
@@ -50,8 +50,8 @@
 				<h5>
 					<p:outputLabel value="Lista de Compras" />
 				</h5>
-				<p:dataTable id="tabelaDeComprasPorCredorNoMes" value="#{cobrancaBean.listaDeComprasPorCredorNoMes}"
-					var="compra">
+				<p:dataTable id="tabelaDeComprasPorCredorNoMes"
+					value="#{cobrancaBean.listaDeComprasPorCredorNoMes}" var="compra">
 
 					<p:column headerText="ID">
 						<p:outputLabel value="#{compra.id}" />
@@ -87,7 +87,7 @@
 						<p:commandLink value="Editar"
 							action="#{compraBean.editarCompra(compra)}" />
 					</p:column>
-					
+
 					<p:column style="width:6rem">
 						<p:commandLink value="Excluir"
 							action="#{compraBean.excluir(compra.id)}" ajax="false" />
@@ -97,8 +97,16 @@
 
 				<br />
 
-				<h:outputLabel
+				<p:outputLabel
 					value="Valor total: #{cobrancaBean.valorDaCobrancaMes}" />
+				<br />
+				<p:outputLabel
+					value="Valor Pago no Mês: #{cobrancaBean.valorDaCobrancaPagoNoMes}" />
+				<br />
+				<p:outputLabel
+					value="Valor em Aberto no Mês: #{cobrancaBean.valorDaCobrancaEmAbertoNoMes}" />
+
+
 
 
 			</div>

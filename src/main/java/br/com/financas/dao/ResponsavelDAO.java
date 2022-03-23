@@ -33,12 +33,8 @@ public class ResponsavelDAO implements ResponsavelRemote {
 	}
 
 	@Override
-	public void remover(Responsavel responsavel) throws Exception {
-		if (responsavel == null) {
-			throw new Exception("Não existe responsavel para deletar!!!");
-		} else {
-			manager.remove(responsavel);
-		}
+	public void remover(Responsavel responsavel) {
+		manager.remove(responsavel);
 
 	}
 

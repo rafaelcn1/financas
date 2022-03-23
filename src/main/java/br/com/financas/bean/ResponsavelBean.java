@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,6 +22,10 @@ public class ResponsavelBean {
 	private List<Compra> comprasPorResponsavel = new ArrayList<Compra>();
 
 	private double valorTotalEmComprasPeloResponsavel;
+
+	private double valorTotalEmCompraPorResponsavelEmAberto;
+	private double valorTotalEmCompraPorResponsavelPago;
+	private double valorTotalEmCompraPorResponsavel;
 
 	private Integer responsavelId;
 
@@ -46,7 +52,6 @@ public class ResponsavelBean {
 
 	public double getValorTotalEmComprasPeloResponsavel() {
 		double valor = 0;
-		System.out.println(getResponsavel());
 		List<Compra> todasCompras = getResponsavel().getCompras();
 		for (Compra compra : todasCompras) {
 			valor += compra.getValor();
@@ -75,11 +80,53 @@ public class ResponsavelBean {
 		this.responsavelId = responsavelId;
 	}
 
+	public double getValorTotalEmCompraPorResponsavelEmAberto() {
+		return valorTotalEmCompraPorResponsavelEmAberto;
+	}
+
+	public void setValorTotalEmCompraPorResponsavelEmAberto(double valorTotalEmCompraPorResponsavelEmAberto) {
+		this.valorTotalEmCompraPorResponsavelEmAberto = valorTotalEmCompraPorResponsavelEmAberto;
+	}
+
+	public double getValorTotalEmCompraPorResponsavelPago() {
+		return valorTotalEmCompraPorResponsavelPago;
+	}
+
+	public void setValorTotalEmCompraPorResponsavelPago(double valorTotalEmCompraPorResponsavelPago) {
+		this.valorTotalEmCompraPorResponsavelPago = valorTotalEmCompraPorResponsavelPago;
+	}
+
+	public double getValorTotalEmCompraPorResponsavel() {
+		return valorTotalEmCompraPorResponsavel;
+	}
+
+	public void setValorTotalEmCompraPorResponsavel(double valorTotalEmCompraPorResponsavel) {
+		this.valorTotalEmCompraPorResponsavel = valorTotalEmCompraPorResponsavel;
+	}
+
 	public void buscarCompraPorResponsavel() {
+		double total = 0;
+		double pago = 0;
+		double aberto = 0;
+
 		Responsavel buscarPorId = responsavelDAO.buscarPorId(getResponsavelId());
-		setResponsavel(buscarPorId);
-		List<Compra> compras = getResponsavel().getCompras();
-		setComprasPorResponsavel(compras);
+		List<Compra> listaDeCompras = buscarPorId.getCompras();
+
+		for (Compra compra : listaDeCompras) {
+			if (compra.getSituacao() == null) {
+				aberto += compra.getValor();
+			} else {
+				pago += compra.getValor();
+			}
+			total += compra.getValor();
+
+		}
+		setComprasPorResponsavel(listaDeCompras);
+
+		setValorTotalEmCompraPorResponsavel(total);
+		setValorTotalEmCompraPorResponsavelEmAberto(aberto);
+		setValorTotalEmCompraPorResponsavelPago(pago);
+
 	}
 
 	public String cadastrarResponsavel() {
@@ -88,21 +135,21 @@ public class ResponsavelBean {
 		return "cadastrocompra?faces-redirect=true";
 	}
 
-	public void editarResponsavel(Integer id) {
+	public String editarResponsavel(Integer id) {
 		Responsavel buscarPorId = responsavelDAO.buscarPorId(id);
 		setResponsavel(buscarPorId);
+		return "cadastroresponsavel?faces-redirect=true";
 	}
 
 	public void excluirResponsavel(Integer id) {
 		Responsavel buscarPorId = responsavelDAO.buscarPorId(id);
-		setResponsavel(buscarPorId);
-		try {
-			responsavelDAO.remover(getResponsavel());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (buscarPorId.getCompras().isEmpty()) {
+			responsavelDAO.remover(buscarPorId);
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					buscarPorId.getNome() + " NÃO PODE SER EXCLUIDO(A)!", "POSSUI COMPRA EM SEU NOME!"));
 		}
-		setResponsavel(new Responsavel());
+
 	}
 
 }

@@ -175,7 +175,6 @@ public class CompraBean implements Serializable {
 
 	public String editarCompra(Compra compra) {
 		setCompra(compra);
-		System.out.println(getCompra().getId());
 		return "cadastrocompra?faces-redirect=true";
 
 	}
@@ -187,7 +186,7 @@ public class CompraBean implements Serializable {
 			compraDAO.remover(buscarPorId);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"CONTA NÃO PODE SER EXCLUIDA!", "EXISTE RELACIONAMENTO DE CREDOR/RESPONSÁVEL"));
+					"COMPRA NÃO PODE SER EXCLUIDA!", "EXISTE RELACIONAMENTO DE CREDOR/RESPONSÁVEL"));
 		}
 
 	}
