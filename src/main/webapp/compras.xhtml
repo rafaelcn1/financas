@@ -14,7 +14,9 @@
 
 	<ui:define name="conteudo">
 		<h:form>
-
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
 			<div class="card">
 				<h5>
 					<p:outputLabel value="Lista de Todas as Compras" />
@@ -25,7 +27,7 @@
 					<p:column headerText="ID">
 						<p:outputLabel value="#{compra.id}" />
 					</p:column>
-					
+
 					<p:column headerText="Credor">
 						<p:outputLabel value="#{compra.credor.nome}" />
 					</p:column>
@@ -36,24 +38,25 @@
 
 					<p:column headerText="Data">
 						<p:outputLabel value="#{compra.data}">
-							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" />
 						</p:outputLabel>
 					</p:column>
-					
+
 					<p:column headerText="Valor">
 						<p:outputLabel value="#{compra.valor}">
-							<f:convertNumber type="currency" currencySymbol="R$ " locale="pt_BR"/>
+							<f:convertNumber type="currency" currencySymbol="R$ "
+								locale="pt_BR" />
 						</p:outputLabel>
 					</p:column>
-					
+
 					<p:column headerText="Parcela">
 						<p:outputLabel value="#{compra.parcelas}" />
 					</p:column>
-					
+
 					<p:column headerText="Situação">
 						<p:outputLabel value="#{compra.situacao}" />
 					</p:column>
-					
+
 					<p:column headerText="Responsável">
 						<p:outputLabel value="#{compra.responsavel.nome}" />
 					</p:column>

@@ -183,7 +183,13 @@ public class CompraBean implements Serializable {
 	@Transactional
 	public void excluir(Integer id) {
 		Compra buscarPorId = compraDAO.buscarPorId(id);
-		compraDAO.remover(buscarPorId);
+		if (buscarPorId.getCredor() == null) {
+			compraDAO.remover(buscarPorId);
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"CONTA NÃO PODE SER EXCLUIDA!", "EXISTE RELACIONAMENTO DE CREDOR/RESPONSÁVEL"));
+		}
+
 	}
 
 }

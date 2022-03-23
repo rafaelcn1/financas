@@ -21,8 +21,7 @@
 					<p:outputLabel value="Credor:" />
 					<p:selectOneMenu value="#{compraBean.credorId}">
 						<f:selectItems value="#{credorBean.listarCredores}" var="credor"
-							itemValue="#{credor.id}" itemLabel="#{credor.nome}"
-							styleClass="selectOneMenu"></f:selectItems>
+							itemValue="#{credor.id}" itemLabel="#{credor.nome}" />
 					</p:selectOneMenu>
 					<p:commandLink action="#{compraBean.cadastrarCredor()}"
 						value="Novo credor" immediate="true" />
@@ -39,12 +38,19 @@
 					<p:inputNumber value="#{compraBean.compra.valor}" />
 					<h:outputLabel value="" />
 
+					<p:outputLabel value="Situação:" />
+					<p:selectOneMenu value="#{compraBean.compra.situacao}">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItem itemLabel="PAGO" itemValue="PAGO" />
+
+					</p:selectOneMenu>
+					<h:outputLabel value="" />
+
 					<p:outputLabel value="Parcelas:" />
 					<p:inputText value="#{compraBean.compra.parcelas}" />
 					<h:outputLabel value="" />
 
 					<p:outputLabel value="Responsável:" />
-
 					<p:selectOneMenu value="#{compraBean.responsavelId}"
 						styleClass="selectOneMenu">
 						<f:selectItems value="#{responsavelBean.listaResponsavel}"
@@ -54,7 +60,8 @@
 					<p:commandLink action="cadastroresponsavel"
 						value="Novo responsável" immediate="true" />
 
-					<p:commandButton action="#{compraBean.salvar()}" value="Salvar" update="@form"/>
+					<p:commandButton action="#{compraBean.salvar()}" value="Salvar"
+						update="@form" />
 				</p:panelGrid>
 
 

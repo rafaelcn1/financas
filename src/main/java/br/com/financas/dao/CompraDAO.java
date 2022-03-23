@@ -8,8 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.com.financas.model.Compra;
-import br.com.financas.model.Credor;
-import br.com.financas.model.Responsavel;
 import br.com.financas.remote.CompraRemote;
 
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -39,6 +37,7 @@ public class CompraDAO implements CompraRemote {
 	@Override
 	public void remover(Compra compra) {
 		manager.remove(compra);
+		manager.flush();
 
 	}
 
