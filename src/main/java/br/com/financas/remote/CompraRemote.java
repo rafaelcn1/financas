@@ -9,9 +9,13 @@ import br.com.financas.model.Compra;
 @Remote
 public interface CompraRemote {
 	public void salvar(Compra compra);
+	
+	public void editar(Compra compra);
 
 	public Compra buscarPorId(Integer id);
 	
 	public List<Compra> listarTodas();
+	
+	public void remover(Compra compra);
 
 }

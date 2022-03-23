@@ -2,62 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:body>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Resposável:" />
-			<h:inputText value="#{responsavelBean.responsavel.nome}" />
+<ui:composition template="/_template.xhtml">
+	<ui:define name="menu" />
 
-			<h:outputLabel value="Renda: " />
-			<h:inputText value="#{responsavelBean.responsavel.renda}">
-				<f:convertNumber currencySymbol="R$" type="currency" locale="pt_BR"
-					pattern="#0000.00" />
-			</h:inputText>
+	<ui:define name="titulo">
+		<p:outputLabel value="Cadastro de Responsável Financeiro" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<div class="card">
+			<h:form id="form">
+				<p:growl>
+					<p:autoUpdate />
+				</p:growl>
 
-		</h:panelGrid>
-		<h:commandButton action="#{responsavelBean.cadastrarResponsavel()}"
-			value="Cadastrar" />
+				<h:panelGrid columns="2" cellpadding="7" styleClass="p-mb-3">
+					<p:outputLabel value="Resposável:" />
+					<p:inputText value="#{responsavelBean.responsavel.nome}" />
 
-		<hr />
-
-		<h:dataTable value="#{responsavelBean.listaResponsavel}"
-			var="responsavel" border="2">
-			<h:column>
-				<f:facet name="header">
-					<h:outputLabel value="ID" />
-				</f:facet>
-				<h:outputLabel value="#{responsavel.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputLabel value="Nome" />
-				</f:facet>
-				<h:outputLabel value="#{responsavel.nome}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">
-					<h:outputLabel value="Renda" />
-				</f:facet>
-				<h:outputLabel value="#{responsavel.renda}" />
-			</h:column>
-
-			<h:column>
-				<h:commandLink action="#{responsavelBean.editarResponsavel(responsavel.id)}" value="Editar" />
-			</h:column>
-
-			<h:column>
-				<h:commandLink action="#{responsavelBean.excluirResponsavel(responsavel.id)}" value="Excluir" />
-			</h:column>
-
-		</h:dataTable>
-
-	</h:form>
+					<p:outputLabel value="Renda: " />
+					<p:inputNumber value="#{responsavelBean.responsavel.renda}" />
+					<p:commandButton action="#{responsavelBean.cadastrarResponsavel()}"
+						value="Cadastrar" />
+				</h:panelGrid>
 
 
+			</h:form>
+		</div>
+	</ui:define>
 
-</h:body>
-
+</ui:composition>
 </html>

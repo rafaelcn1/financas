@@ -2,62 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:body>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Credor:" />
-			<h:inputText value="#{credorBean.credor.nome}" />
+<ui:composition template="/_template.xhtml">
+	<ui:define name="menu" />
 
-			<h:outputLabel value="Vencimento:" />
+	<ui:define name="titulo">
+		<p:outputLabel value="Cadastro de Credor" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<div class="card">
+			<h:form id="form">
+				<p:growl>
+					<p:autoUpdate />
+				</p:growl>
 
-			<h:inputText value="#{credorBean.credor.vencimento}">
-			</h:inputText>
+				<h:panelGrid columns="2" cellpadding="7" styleClass="p-mb-3">
+					<p:outputLabel for="nome" value="Nome:" />
+					<p:inputText id="nome" value="#{credorBean.credor.nome}" />
+					
+					<p:outputLabel for="vencimento" value="Vencimento:" />
+					<p:inputNumber id="vencimento" value="#{credorBean.credor.vencimento}" />
+				</h:panelGrid>
 
+				<p:commandButton value="Salvar" id="btnSalvar"
+					action="#{credorBean.cadastrarCredor()}" ajax="false"
+					styleClass="p-mr-2" />
+			</h:form>
+		</div>
+	</ui:define>
 
-		</h:panelGrid>
-		<h:commandButton action="#{credorBean.cadastrarCredor()}"
-			value="Cadastrar" />
-
-		<hr />
-
-		<h:dataTable value="#{credorBean.listarCredores}" var="credor"
-			border="1">
-			<h:column>
-				<f:facet name="header">
-					<h:outputLabel value="ID" />
-				</f:facet>
-				<h:outputFormat value="#{credor.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputLabel value="Nome" />
-				</f:facet>
-				<h:outputFormat value="#{credor.nome}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputLabel value="Vencimento" />
-				</f:facet>
-				<h:outputFormat value="#{credor.vencimento}" />
-			</h:column>
-
-			<h:column>
-				<h:commandLink action="#{credorBean.editarCredor(credor.id)}"
-					value="Editar" />
-			</h:column>
-
-			<h:column>
-				<h:commandLink action="#{credorBean.excluirCredor(credor.id)}"
-					value="Excluir" />
-			</h:column>
-		</h:dataTable>
-
-	</h:form>
-
-
-
-</h:body>
+</ui:composition>
 
 </html>

@@ -57,6 +57,10 @@
 			<artifactId>jsr250-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -93,6 +97,14 @@
 				<version>2.3</version>
 				<scope>provided</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>11.0.0</version>
+			</dependency>
+
+
 
 		</dependencies>
 	</dependencyManagement>

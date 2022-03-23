@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="menu" />
+
+	<ui:define name="titulo">
+		<p:outputLabel value="Todas as Compras" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+
+			<div class="card">
+				<h5>
+					<p:outputLabel value="Lista de Todas as Compras" />
+				</h5>
+				<p:dataTable id="tabelaDeCompras"
+					value="#{compraBean.listarCompras}" var="compra">
+
+					<p:column headerText="ID">
+						<p:outputLabel value="#{compra.id}" />
+					</p:column>
+					
+					<p:column headerText="Credor">
+						<p:outputLabel value="#{compra.credor.nome}" />
+					</p:column>
+					<p:column headerText="Descrição">
+						<p:outputLabel value="#{compra.descricao}" />
+					</p:column>
+
+
+					<p:column headerText="Data">
+						<p:outputLabel value="#{compra.data}">
+							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+						</p:outputLabel>
+					</p:column>
+					
+					<p:column headerText="Valor">
+						<p:outputLabel value="#{compra.valor}">
+							<f:convertNumber type="currency" currencySymbol="R$ " locale="pt_BR"/>
+						</p:outputLabel>
+					</p:column>
+					
+					<p:column headerText="Parcela">
+						<p:outputLabel value="#{compra.parcelas}" />
+					</p:column>
+					
+					<p:column headerText="Situação">
+						<p:outputLabel value="#{compra.situacao}" />
+					</p:column>
+					
+					<p:column headerText="Responsável">
+						<p:outputLabel value="#{compra.responsavel.nome}" />
+					</p:column>
+
+
+					<p:column style="width:6rem">
+						<p:commandLink value="Editar"
+							action="#{compraBean.editarCompra(compra)}" />
+					</p:column>
+
+					<p:column style="width:6rem">
+						<p:commandLink value="Excluir"
+							action="#{compraBean.excluir(compra.id)}" ajax="false" />
+					</p:column>
+
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>

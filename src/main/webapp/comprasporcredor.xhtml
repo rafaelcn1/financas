@@ -9,30 +9,27 @@
 	<ui:define name="menu" />
 
 	<ui:define name="titulo">
-		<p:outputLabel value="Relatório de Compras por Responsável Financeiro" />
+		<p:outputLabel value="Relatório de Compras por Credor" />
 	</ui:define>
 	<ui:define name="conteudo">
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputLabel value="Responsavel: " />
+				<h:outputLabel value="Credor:" />
 				<h:selectOneMenu styleClass="selectOneMenu"
-					value="#{responsavelBean.responsavelId}">
-					<f:selectItems value="#{responsavelBean.listaResponsavel}"
-						var="responsavel" itemValue="#{responsavel.id}"
-						itemLabel="#{responsavel.nome}" styleClass="selectOneMenu"></f:selectItems>
+					value="#{credorBean.credorId}">
+					<f:selectItems value="#{credorBean.listarCredores}" var="credor"
+						itemValue="#{credor.id}" itemLabel="#{credor.nome}"
+						styleClass="selectOneMenu"></f:selectItems>
 				</h:selectOneMenu>
 
-				<h:commandButton
-					action="#{responsavelBean.buscarCompraPorResponsavel()}"
+				<h:commandButton action="#{credorBean.buscarCompras()}"
 					value="Buscar" />
 			</h:panelGrid>
 
 			<hr />
-			<h:outputLabel value="Valor total em compras: " />
-			<h:outputLabel
-				value="#{responsavelBean.valorTotalEmComprasPeloResponsavel}" />
-			<h:dataTable value="#{responsavelBean.comprasPorResponsavel}"
-				var="compra" border="1">
+
+			<h:outputLabel value="#{credorBean.valorTotalEmCompras}" />
+			<h:dataTable value="#{credorBean.compras}" var="compra" border="1">
 				<h:column>
 					<f:facet name="header">
 						<h:outputLabel value="ID" />
@@ -87,8 +84,10 @@
 				</h:column>
 
 			</h:dataTable>
+			<br />
 
-
+			<h:commandButton action="#{paginasBean.irParaPaginaCobrancas()}"
+				value="Detalhes" />
 
 		</h:form>
 	</ui:define>

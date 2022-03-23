@@ -1,10 +1,24 @@
 body {
-	width: 750px;
-	font-size: 30px;
+	font-family: "Raleway", Arial, sans-serif
 }
 
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Oswald"
+}
 
-.selectOneMenu {
-	width: 177px;
-	color: green;
+#titulo h1 {
+	text-transform: uppercase;
+}
+
+.menu {
+	max-width: 100%;
+}
+
+.ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell
+	{
+	text-align: center;
+}
+
+.customPanelGrid .ui-panelgrid-content {
+	align-items: center;
 }

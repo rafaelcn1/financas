@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="menu" />
+
+	<ui:define name="titulo">
+		<p:outputLabel value="Todas as Compras" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+
+			<div class="card">
+				<h5>
+					<p:outputLabel value="Lista de Responsaveis" />
+				</h5>
+				<p:dataTable id="tabelaDeResponsaveis"
+					value="#{responsavelBean.listaResponsavel}" var="responsavel">
+
+					<p:column headerText="ID">
+						<p:outputLabel value="#{responsavel.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<p:outputLabel value="#{responsavel.nome}" />
+					</p:column>
+
+
+					<p:column headerText="Renda">
+						<p:outputLabel value="#{responsavel.renda}">
+						<f:convertNumber type="currency" locale="pt_BR" currencySymbol="R$ "/>
+						</p:outputLabel>
+					</p:column>
+
+
+					<p:column style="width:6rem">
+						<p:commandLink value="Editar"
+							action="#{responsavelBean.editarResponsavel(responsavel.id)}" />
+					</p:column>
+
+					<p:column style="width:6rem">
+						<p:commandLink value="Excluir"
+							action="#{responsavelBean.excluirResponsavel(responsavel.id)}" ajax="false" />
+					</p:column>
+
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>

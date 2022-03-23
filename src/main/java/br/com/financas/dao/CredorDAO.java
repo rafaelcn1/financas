@@ -40,6 +40,7 @@ public class CredorDAO implements CredorRemote {
 	@Override
 	public void excluir(Credor credor) {
 		// TODO Auto-generated method stub
+		
 		manager.remove(credor);
 
 	}

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -27,13 +28,16 @@ public class Compra implements Serializable {
 	private double valor;
 	private Date data;
 	private int parcelas;
+	
 
-	@ManyToOne
-	@JoinColumn(name = "credor_id", foreignKey = @ForeignKey(name = "credor_id"), nullable = false)
+	@ManyToOne()
+	@JoinColumn(name = "credor_id", foreignKey = @ForeignKey(name = "credor_id"))
+	//, nullable = false
 	private Credor credor;
 
 	@ManyToOne
-	@JoinColumn(name = "responsavel_id", foreignKey = @ForeignKey(name = "responsavel_id"), nullable = false)
+	@JoinColumn(name = "responsavel_id", foreignKey = @ForeignKey(name = "responsavel_id"))
+	//, nullable = false
 	private Responsavel responsavel;
 
 	public Compra() {
