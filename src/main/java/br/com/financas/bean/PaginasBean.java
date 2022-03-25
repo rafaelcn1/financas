@@ -8,38 +8,38 @@ import javax.inject.Named;
 public class PaginasBean {
 
 	public String irParaPaginaCadastroCompras() {
-		return "cadastrocompra?faces-redirect=true";
+		return "/pages/cadastrocompra?faces-redirect=true";
 	}
 
 	public String irParaPaginaCadastroCredor() {
-		return "cadastrocredor?faces-redirect=true";
+		return "/pages/cadastrocredor?faces-redirect=true";
 	}
 
 	public String irParaPaginaCadastroResponsavel() {
-		return "cadastroresponsavel?faces-redirect=true";
+		return "/pages/cadastroresponsavel?faces-redirect=true";
 	}
 
 	public String irParaPaginaCobrancas() {
-		return "cobrancas?faces-redirect=true";
+		return "/pages/cobrancas?faces-redirect=true";
 	}
 
 	public String irParaPaginaComprasPorCredor() {
-		return "comprasporcredor?faces-redirect=true";
+		return "/pages/comprasporcredor?faces-redirect=true";
 	}
 	
 	public String irParaPaginaComprasPorResponsavel() {
-		return "comprasporesponsavel?faces-redirect=true";
+		return "/pages/comprasporesponsavel?faces-redirect=true";
 	}
 
 	public String irParaPaginaCompras() {
-		return "compras?faces-redirect=true";
+		return "/pages/compras?faces-redirect=true";
 	}
 	
 	public String irParaPaginaCredores() {
-		return "credores?faces-redirect=true";
+		return "/pages/credores?faces-redirect=true";
 	}
 	
 	public String irParaPaginaResponsaveis() {
-		return "responsaveis?faces-redirect=true";
+		return "/pages/responsaveis?faces-redirect=true";
 	}
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -7,16 +7,12 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<title>Gestor de Finanças</title>
 	<h:outputStylesheet library="css" name="style.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Oswald" />
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Open Sans" />
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </h:head>
 
 <h:body styleClass="w3-justify">
@@ -48,6 +44,8 @@
 					<p:menuitem value="Compras"
 						action="#{paginasBean.irParaPaginaCompras()}" />
 				</p:submenu>
+
+				<p:menuitem value="Logout" action="#{loginBean.logout()}" ajax="false"/>
 			</p:menubar>
 		</h:form>
 	</div>
@@ -60,6 +58,7 @@
 
 
 	<div id="conteudo">
+		<p:outputLabel value="Usuário : #{loginBean.usuario.login}" />
 		<ui:insert name="conteudo" />
 	</div>
 </h:body>

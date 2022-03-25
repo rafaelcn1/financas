@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="menu" />
+
+	<ui:define name="titulo">
+		<p:outputLabel value="Todas as Compras" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<div class="card">
+				<h5>
+					<p:outputLabel value="Lista de Credores" />
+				</h5>
+				<p:dataTable id="tabelaDeCredores"
+					value="#{credorBean.listarCredores}" var="credor">
+
+					<p:column headerText="ID">
+						<p:outputLabel value="#{credor.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<p:outputLabel value="#{credor.nome}" />
+					</p:column>
+
+
+					<p:column headerText="Vencimento">
+						<p:outputLabel value="#{credor.vencimento}" />
+					</p:column>
+
+
+					<p:column style="width:6rem">
+						<p:commandLink value="Editar"
+							action="#{credorBean.editarCredor(credor.id)}" />
+					</p:column>
+
+					<p:column style="width:6rem">
+						<p:commandLink value="Excluir"
+							action="#{credorBean.excluirCredor(credor.id)}" ajax="false" />
+					</p:column>
+
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>
