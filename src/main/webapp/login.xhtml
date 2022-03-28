@@ -12,19 +12,24 @@
 		<p:outputLabel value="Login de Usuário" />
 	</ui:define>
 	<ui:define name="conteudo">
-		<div class="card">
+		<div class="cardLogin">
 			<h:form id="form">
 
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="2" styleClass="cardLogin">
 					<p:outputLabel for="login" value="Login :" />
-					<p:inputText id="login" value="#{loginBean.login}" required="true" requiredMessage="Favor inserir o login do usuário!" />
+					<p:inputText id="login" value="#{loginBean.login}" required="true"
+						requiredMessage="Favor inserir o login do usuário!" />
 
 					<p:outputLabel for="senha" value="Senha: " />
-					<p:password id="senha" value="#{loginBean.senha}" required="true" requiredMessage="Favor inserir s senha do usuário!"  />
+					<p:password id="senha" value="#{loginBean.senha}" required="true"
+						requiredMessage="Favor inserir s senha do usuário!" />
+
+					<p:commandButton value="Login" id="btnlogin"
+						action="#{loginBean.logon()}" ajax="false" />
 				</h:panelGrid>
 
-				<p:commandButton value="Login" id="btnlogin"
-					action="#{loginBean.logon()}" ajax="false"/>
+
+
 			</h:form>
 		</div>
 	</ui:define>

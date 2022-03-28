@@ -48,13 +48,16 @@
 				</p:submenu>
 
 				<p:menuitem value="Logout" action="#{loginBean.logout()}"
-					ajax="false"/>
+					ajax="false" />
+
 			</p:menubar>
 			<p:growl>
 				<p:autoUpdate />
 			</p:growl>
 		</h:form>
 	</div>
+
+	<p:outputLabel value="Usuário: #{loginBean.usuario.login}" styleClass="usuarioLogado"/>
 
 	<div id="titulo">
 		<h1 align="center">
@@ -64,9 +67,11 @@
 
 
 	<div id="conteudo">
-		<p:outputLabel value="Usuário : #{loginBean.usuario.login}" />
+
 		<ui:insert name="conteudo" />
 	</div>
+
+
 </h:body>
 
 </html>

@@ -4,14 +4,11 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Transient;
 
 import br.com.financas.dao.UsuarioDAO;
 import br.com.financas.model.Usuario;
