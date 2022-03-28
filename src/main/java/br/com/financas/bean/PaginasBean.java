@@ -3,12 +3,16 @@ package br.com.financas.bean;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 
-@Named
+@Named(value = "paginasBean")
 @Stateless
 public class PaginasBean {
 
 	public String irParaPaginaCadastroCompras() {
 		return "/pages/cadastrocompra?faces-redirect=true";
+	}
+	
+	public String irParaPaginaCadastroUsuario() {
+		return "/pages/cadastrousuario?faces-redirect=true";
 	}
 
 	public String irParaPaginaCadastroCredor() {

@@ -9,6 +9,7 @@
 		<class>br.com.financas.model.Compra</class>
 		<class>br.com.financas.model.Credor</class>
 		<class>br.com.financas.model.Responsavel</class>
+		<class>br.com.financas.model.Usuario</class>
 		<properties>
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL8Dialect" />

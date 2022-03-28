@@ -11,7 +11,7 @@ import br.com.financas.dao.CredorDAO;
 import br.com.financas.model.Compra;
 import br.com.financas.model.Credor;
 
-@Named
+@Named(value = "cobrancaBean")
 @Stateless
 public class CobrancaBean {
 

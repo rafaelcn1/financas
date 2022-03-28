@@ -26,6 +26,8 @@
 						action="#{paginasBean.irParaPaginaCadastroCredor()}" />
 					<p:menuitem value="Responsavel"
 						action="#{paginasBean.irParaPaginaCadastroResponsavel()}" />
+					<p:menuitem value="Usuário"
+						action="#{paginasBean.irParaPaginaCadastroUsuario()}" />
 				</p:submenu>
 				<p:submenu label="Compras">
 					<p:menuitem value="Cobranças"
@@ -45,8 +47,12 @@
 						action="#{paginasBean.irParaPaginaCompras()}" />
 				</p:submenu>
 
-				<p:menuitem value="Logout" action="#{loginBean.logout()}" ajax="false"/>
+				<p:menuitem value="Logout" action="#{loginBean.logout()}"
+					ajax="false"/>
 			</p:menubar>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
 		</h:form>
 	</div>
 

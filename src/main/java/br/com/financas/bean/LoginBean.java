@@ -1,15 +1,22 @@
 package br.com.financas.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Transient;
 
+import br.com.financas.dao.UsuarioDAO;
 import br.com.financas.model.Usuario;
 
-@Named
+@Named(value = "loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
 
@@ -20,6 +27,10 @@ public class LoginBean implements Serializable {
 	private String login, senha;
 
 	private Usuario usuario;
+
+	@SuppressWarnings("cdi-ambiguous-dependency")
+	@Inject
+	private UsuarioDAO usuarioDAO;
 
 	public String getLogin() {
 		return login;
@@ -47,10 +58,19 @@ public class LoginBean implements Serializable {
 
 	public String logon() {
 		// fazer busca no banco
+		List<Usuario> listarTodosUsuariosCadastradoNoSistema = usuarioDAO.listarTodos();
 
 		if (login.equals("root") && senha.equals("root")) {
 			setUsuario(new Usuario("root", "root"));
-			return "/pages/compras?faces-redirect=true";
+			return "/pages/cadastrousuario.xhtml?faces-redirect=true";
+		} else {
+			for (Usuario usuario : listarTodosUsuariosCadastradoNoSistema) {
+				if (usuario.getLogin().equalsIgnoreCase(login) && usuario.getSenha().equalsIgnoreCase(senha)) {
+					setUsuario(usuario);
+					return "/pages/compras.xhtml?faces-redirect=true";
+				}
+
+			}
 		}
 
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -58,10 +78,15 @@ public class LoginBean implements Serializable {
 		return null;
 	}
 
-	public String logout() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	public void logout() {
 		setUsuario(new Usuario());
-		return "login?faces-redirect=true";
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

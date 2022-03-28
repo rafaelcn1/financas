@@ -9,45 +9,19 @@
 	<ui:define name="menu" />
 
 	<ui:define name="titulo">
-		<p:outputLabel value="Todas as Compras" />
+		<p:outputLabel value="Cadastro novo Usuário" />
 	</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form>
-			<p:growl>
-				<p:autoUpdate />
-			</p:growl>
 			<div class="card">
-				<h5>
-					<p:outputLabel value="Lista de Credores" />
-				</h5>
-				<p:dataTable id="tabelaDeCredores"
-					value="#{credorBean.listarCredores}" var="credor">
-
-					<p:column headerText="ID">
-						<p:outputLabel value="#{credor.id}" />
-					</p:column>
-					<p:column headerText="Nome">
-						<p:outputLabel value="#{credor.nome}" />
-					</p:column>
-
-
-					<p:column headerText="Vencimento">
-						<p:outputLabel value="#{credor.vencimento}" />
-					</p:column>
-
-
-					<p:column style="width:6rem">
-						<p:commandLink value="Editar"
-							action="#{credorBean.editarCredor(credor.id)}" />
-					</p:column>
-
-					<p:column style="width:6rem">
-						<p:commandLink value="Excluir"
-							action="#{credorBean.excluirCredor(credor.id)}" ajax="false" />
-					</p:column>
-
-				</p:dataTable>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Login: " />
+				<p:inputText value="#{usuarioBean.usuario.login}"/>
+				<p:outputLabel value="Senha: " />
+				<p:password value="#{usuarioBean.usuario.senha}"/>
+			</h:panelGrid>
+			<p:commandButton value="Cadastrar" action="#{usuarioBean.salvar()}" ajax="false"/>
 			</div>
 		</h:form>
 	</ui:define>

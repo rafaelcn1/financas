@@ -13,7 +13,7 @@ import br.com.financas.dao.ResponsavelDAO;
 import br.com.financas.model.Compra;
 import br.com.financas.model.Responsavel;
 
-@Named
+@Named(value = "responsavelBean")
 @Stateless
 public class ResponsavelBean {
 
