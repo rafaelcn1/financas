@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* *financas* --port $PORT
+web: java login.xhtml
