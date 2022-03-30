@@ -3,19 +3,33 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-	<persistence-unit name="financas" transaction-type="JTA">
+	<persistence-unit name="financas"
+		transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:jboss/datasources/MySqlDS</jta-data-source>
+		<!-- <jta-data-source>java:jboss/datasources/MySqlDS</jta-data-source> -->
 		<class>br.com.financas.model.Compra</class>
 		<class>br.com.financas.model.Credor</class>
 		<class>br.com.financas.model.Responsavel</class>
 		<class>br.com.financas.model.Usuario</class>
+
 		<properties>
+
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL8Dialect" />
 			<property
 				name="javax.persistence.schema-generation.database.action"
 				value="update" />
+
+
+
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_55ca258fa365e18" />
+			<property name="javax.persistence.jdbc.user"
+				value="babd49da810e6b" />
+			<property name="javax.persistence.jdbc.password"
+				value="ea848686366dd8c" />
 		</properties>
 	</persistence-unit>
 </persistence>
