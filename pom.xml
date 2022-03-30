@@ -13,6 +13,11 @@
 
 		<plugins>
 			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>2.1.0.Beta1</version>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
@@ -29,6 +34,13 @@
 					<warName>financas</warName>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<outputDirectory>../pathto/deployments</outputDirectory>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -42,6 +54,20 @@
 
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
+		<dependency>
+			<groupId>org.wildfly.plugins</groupId>
+			<artifactId>wildfly-maven-plugin</artifactId>
+			<version>2.1.0.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.wildfly.bom/wildfly -->
+		<dependency>
+			<groupId>org.wildfly.bom</groupId>
+			<artifactId>wildfly</artifactId>
+			<version>24.0.0.Final</version>
+			<type>pom</type>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
