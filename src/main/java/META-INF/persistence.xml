@@ -20,10 +20,10 @@
 				name="javax.persistence.schema-generation.database.action"
 				value="update" />
 
-
+			<property name="hibernate.show_sql" value="true" />
 
 			<property name="javax.persistence.jdbc.driver"
-				value="com.mysql.cj.jdbc.Driver" />
+				value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_55ca258fa365e18" />
 			<property name="javax.persistence.jdbc.user"
