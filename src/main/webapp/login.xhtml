@@ -5,35 +5,40 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/_template.xhtml">
-	<ui:define name="menu" />
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Login de Usuário</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+</h:head>
+<h:body styleClass="bodyLogin">
 
-	<ui:define name="titulo">
-		<p:outputLabel value="Login de Usuário" />
-	</ui:define>
-	<ui:define name="conteudo">
-		<div class="cardLogin">
-			<h:form id="form">
+	<div class="cardLogin">
+		<h:form id="form">
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:outputLabel value="ORÇAMENTO E FINANÇAS PESSOAL" styleClass="outputLabelLogin"/>
+			<h:panelGrid columns="2" styleClass="cardLogin">
+				<p:outputLabel for="login" value="Login :" />
+				<p:inputText id="login" value="#{loginBean.login}" required="true"
+					requiredMessage="Favor inserir o login do usuário!" />
 
-				<h:panelGrid columns="2" styleClass="cardLogin">
-					<p:outputLabel for="login" value="Login :" />
-					<p:inputText id="login" value="#{loginBean.login}" required="true"
-						requiredMessage="Favor inserir o login do usuário!" />
+				<p:outputLabel for="senha" value="Senha: " />
+				<p:password id="senha" value="#{loginBean.senha}" required="true"
+					requiredMessage="Favor inserir s senha do usuário!" />
 
-					<p:outputLabel for="senha" value="Senha: " />
-					<p:password id="senha" value="#{loginBean.senha}" required="true"
-						requiredMessage="Favor inserir s senha do usuário!" />
-
-					<p:commandButton value="Login" id="btnlogin"
-						action="#{loginBean.logon()}" ajax="false" />
-				</h:panelGrid>
-
+				<p:commandButton value="Login" id="btnlogin"
+					action="#{loginBean.logon()}" ajax="false" />
+			</h:panelGrid>
 
 
-			</h:form>
-		</div>
-	</ui:define>
 
-</ui:composition>
+		</h:form>
+	</div>
+</h:body>
 
 </html>

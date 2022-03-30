@@ -22,7 +22,11 @@
 					<p:outputLabel value="Lista de Todas as Compras" />
 				</h5>
 				<p:dataTable id="tabelaDeCompras"
-					value="#{compraBean.listarCompras}" var="compra">
+					value="#{compraBean.listarCompras}" var="compra" paginator="true"
+					rows="5"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+					rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
 					<p:column headerText="ID">
 						<p:outputLabel value="#{compra.id}" />

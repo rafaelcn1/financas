@@ -6,20 +6,21 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/_template.xhtml">
-
+	<ui:define name="titulo">
+		<p:outputLabel value="Cadastro de Compra"/>
+	</ui:define>
+	
 	<ui:define name="conteudo">
-		<div class="card">
+		<div class="cardCadastroCompra">
 			<h:form id="formCadastroCompra">
 				<p:growl>
 					<p:autoUpdate />
 				</p:growl>
 
+				<h:panelGrid id="panelGridCadastroCompra" columns="3" styleClass="panelGridCadastroCompra">
 
-				<p:panelGrid id="panelGridCadastroCompra" columns="3" layout="grid"
-					styleClass="showcase-text-align-center"
-					columnClasses="ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3">
 					<p:outputLabel value="Credor:" />
-					<p:selectOneMenu value="#{compraBean.credorId}">
+					<p:selectOneMenu value="#{compraBean.credorId}" styleClass="selectOneMenuCadastroCompra">
 						<f:selectItems value="#{credorBean.listarCredores}" var="credor"
 							itemValue="#{credor.id}" itemLabel="#{credor.nome}" />
 					</p:selectOneMenu>
@@ -39,7 +40,7 @@
 					<h:outputLabel value="" />
 
 					<p:outputLabel value="Situação:" />
-					<p:selectOneMenu value="#{compraBean.compra.situacao}">
+					<p:selectOneMenu value="#{compraBean.compra.situacao}" styleClass="selectOneMenuCadastroCompra">
 						<f:selectItem itemLabel="" itemValue="" />
 						<f:selectItem itemLabel="PAGO" itemValue="PAGO" />
 
@@ -62,7 +63,7 @@
 
 					<p:commandButton action="#{compraBean.salvar()}" value="Salvar"
 						update="@form" />
-				</p:panelGrid>
+				</h:panelGrid>
 
 
 
