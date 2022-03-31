@@ -28,29 +28,8 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: auto;
 }
 
-.usuarioLogado {
+.usuarioLogado{
 	position: absolute;
-	right: 0px;
-	width: 160px;
-}
-
-.panelGridCadastroCompra {
-	width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.selectOneMenuCadastroCompra {
-	padding-right: 103px;
-}
-
-.bodyLogin {
-	margin-top: 100px;
-}
-
-.outputLabelLogin {
-	width: 100%;
-	display: block;
-	align-items: center;
-	text-align: center
+    right: 0px;
+    width: 160px;
 }

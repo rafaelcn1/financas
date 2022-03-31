@@ -1,42 +1,55 @@
 package br.com.financas.main;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-import com.mysql.cj.protocol.Resultset.Concurrency;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import br.com.financas.dao.CompraDAO;
+import br.com.financas.model.Compra;
 
 public class ComprasMain {
 
-	public static void main(String[] args) throws ParseException, IOException {
+	public static void main(String[] args) throws ParseException {
 		// TODO Auto-generated method stub
 
-		String url = "https://h-apigateway.conectagov.estaleiro.serpro.gov.br/api-cep/v1/consulta/cep/";
-		String cep = "52280235";
+		Compra compra1 = new Compra();
 
-		String json = "https://viacep.com.br/ws/" + cep + "/json/";
-		URL u = null;
-		HttpURLConnection con = null;
-		try {
-			u = new URL(json);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		compra1.setDescricao("Celpe");
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date diaDaCompra = sdf.parse("29/01/2022");
+		compra1.setData(diaDaCompra);
+
+		compra1.setValor(100.00);
+
+		compra1.setParcelas(2);
+
+		Calendar calendar = Calendar.getInstance();
+		
+		System.out.println(diaDaCompra);
+		calendar.setTime(diaDaCompra);
+		System.out.println(calendar.getTime());
+		System.out.println(calendar.getTime().getDate());
+
+		@SuppressWarnings("deprecation")
+		int mes = calendar.getTime().getMonth();
+		// calendar.set(Calendar.MONTH, mes + 1);
+		if (calendar.getTime().getDate() == 31 || calendar.getTime().getDate() == 30
+				|| calendar.getTime().getDate() == 29 && calendar.getTime().getMonth() == 0) {
+			calendar.set(calendar.getTime().getYear(), Calendar.MARCH, 1);
+			System.out.println(calendar.getTime());
+		} else {
+			System.out.println("Não entrou!");
 		}
+		System.out.println(calendar.getTime());
 		
-		try {
-			con = (HttpURLConnection) u.openConnection();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		int responseCode = con.getResponseCode();
 		
-		System.out.println(responseCode);
+
 	}
 
 }

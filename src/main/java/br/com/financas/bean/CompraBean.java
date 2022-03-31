@@ -130,23 +130,23 @@ public class CompraBean implements Serializable {
 				double valor = getCompra().getValor() / getCompra().getParcelas();
 				for (int i = 1; i <= getCompra().getParcelas(); i++) {
 
-					calendar.set(Calendar.MONTH, mesDaCompra + (i));
-					calendar.setTime(calendar.getTime());
 					Compra compraTemp = new Compra(getCompra().getDescricao(), getCompra().getSituacao(), valor,
 							calendar.getTime(), i, buscarCredorPorId, buscarResponsavelPorId);
 
 					listaComprasTemp.add(compraTemp);
 
-					//calendar.set(Calendar.MONTH, mesDaCompra + (i));
-					//calendar.setTime(calendar.getTime());
+					calendar.set(Calendar.MONTH, mesDaCompra + i);
+					calendar.setTime(calendar.getTime());
 
 				}
 			}
 
 			for (Compra compra : listaComprasTemp) {
 				if (compra.getId() == null) {
+					System.out.println("Salvando ID: " + compra.getId());
 					compraDAO.salvar(compra);
 				} else {
+					System.out.println("Editando ID: " + compra.getId());
 					compraDAO.editar(compra);
 				}
 			}
