@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Transient;
 
 import br.com.financas.dao.UsuarioDAO;
 import br.com.financas.model.Usuario;
@@ -53,10 +54,9 @@ public class LoginBean implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public String logon() {
+	public String logon1() {
 		// fazer busca no banco
 		List<Usuario> listarTodosUsuariosCadastradoNoSistema = usuarioDAO.listarTodos();
-
 		if (login.equals("root") && senha.equals("root")) {
 			setUsuario(new Usuario("root", "root"));
 			return "/pages/cadastrousuario.xhtml?faces-redirect=true";
@@ -73,6 +73,11 @@ public class LoginBean implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou Senha invalida!", null));
 		return null;
+
+	}
+	
+	public void logon() {
+		System.out.println(getLogin());
 	}
 
 	public void logout() {

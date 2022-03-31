@@ -54,54 +54,7 @@
 
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
-		<dependency>
-			<groupId>org.wildfly.plugins</groupId>
-			<artifactId>wildfly-maven-plugin</artifactId>
-			<version>2.1.0.Final</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.wildfly.bom/wildfly -->
-		<dependency>
-			<groupId>org.wildfly.bom</groupId>
-			<artifactId>wildfly</artifactId>
-			<version>24.0.0.Final</version>
-			<type>pom</type>
-		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.26</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>javax.persistence-api</artifactId>
-			<version>2.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.6.7.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.ejb</groupId>
-			<artifactId>javax.ejb-api</artifactId>
-			<version>3.2</version>
-			<scope>provided</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
 			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
